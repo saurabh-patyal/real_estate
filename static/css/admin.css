@@ -1,0 +1,27 @@
+#header{
+    background:#758db1;
+    color: #fff;
+}
+
+#branding h1{
+    color: #fff;
+}
+
+a:link,
+a:visited{
+    color:#273D5F;
+}
+
+div.breadcrums{
+    background: #30caa0;
+    color:#273D5F ;
+}
+
+div.breadcrums a{
+    color: #333;
+}
+
+.module h2, .module caption, .inline-group h2{
+    background:#30caa0;
+    color: #fff;
+}
