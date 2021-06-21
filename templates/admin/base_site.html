@@ -2,7 +2,8 @@
 {% load static %}
 {% block branding %}
 <h1 id="header">
-<img src="{% static 'img/logo.png' %}" alt="logo" width="50" >Admin Dashboard
+<a href="{% url 'admin:index' %}">
+<img src="{% static 'img/logo.png' %}"  alt="logo" width="50" >Admin Dashboard</a>
 </h1>
 {% endblock %}
 

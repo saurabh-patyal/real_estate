@@ -1,5 +1,5 @@
 from django.core import paginator
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Listing
 from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
 # Create your views here.
@@ -13,15 +13,19 @@ def listings(request):
     page=request.GET.get('page')
     paged_listings=paginator.get_page(page)
 
-    context={
-    
+    context={ 
         'listings': paged_listings
     }
     return render(request,'pages/listings.html', context)
 
 
 def listing(request,listing_id):
-    return render(request,'pages/listing.html')
+    listing = get_object_or_404(Listing,pk=listing_id)
+    context={ 
+        'listing': listing
+    }
+
+    return render(request,'pages/listing.html',context)
 
 
 def search(request):
