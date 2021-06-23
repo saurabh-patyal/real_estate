@@ -1,13 +1,17 @@
 from django.shortcuts import render
 from listings.models import Listing
 from realtors.models import Realtor
+from listings.choices import state_choices, price_choices, bedroom_choices
 # Create your views here.
 
 def home(request):
     listings= Listing.objects.order_by('-list_date').filter(is_published=True)[:3]
 
     context = {
-        'listings':listings
+        'listings':listings,
+        'state_choices':state_choices,
+        'bedroom_choices':bedroom_choices,
+        'price_choices':price_choices
     }
     return render(request,'pages/home.html',context)
 

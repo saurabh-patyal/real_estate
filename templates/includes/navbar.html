@@ -11,6 +11,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <ul class="navbar-nav">
+        
           <li
           {% if '/' == request.path %} 
             class="nav-item active mr-3"
@@ -41,16 +42,48 @@
         </ul>
 
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item mr-3">
-            <a class="nav-link" href="register.html">
-              <i class="fas fa-user-plus"></i> Register</a>
+        {% comment %} authenticated user will not see login and register {% endcomment %}
+        {%if user.is_authenticated %}    
+         <li
+          {% if 'dashboard' in request.path %} 
+            class="nav-item active mr-3"
+          {% else %}
+            <class="nav-item  mr-3"
+          {% endif %}
+          >
+            <a class="nav-link" href="{% url 'dashboard' %}">Welcome {{user.username}} (dashboard)</a>
           </li>
           <li class="nav-item mr-3">
-            <a class="nav-link" href="login.html">
-              <i class="fas fa-sign-in-alt"></i>
+            <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+              <i class="fas fa-sign-out-alt">Logout</i>
+            </a>
+            <form method="POST" id="logout" action="{% url 'logout' %}">
+              <input type="hidden">
+              {% csrf_token %}
+            </form>
+          </li>
+        {% else %}
+          <li
+          {% if 'register' in request.path %} 
+            class="nav-item active mr-3"
+          {% else %}
+            <class="nav-item  mr-3"
+          {% endif %}
+          >
+            <a class="nav-link" href="{% url 'register' %}">Register</a>
+          </li>
+         <li
+          {% if 'login' in request.path %} 
+            class="nav-item active mr-3"
+          {% else %}
+            <class="nav-item  mr-3"
+          {% endif %}
+          >
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
 
-              Login</a>
-          </li>
+        {% endif %}
+         
         </ul>
       </div>
     </div>
