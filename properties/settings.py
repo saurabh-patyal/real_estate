@@ -151,3 +151,10 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger'
    
 }
+
+#Mail Settings
+EMAIL_HOST='smtp.gmail.com'  #Any smtp server from where you fired mail
+EMAIL_PORT=587               #Please ask port number from smtp server.gmail has 587 by defualt
+EMAIL_HOST_USER='saurabh.patyal@gmail.com'
+EMAIL_HOST_PASSWORD='viraj@2017'
+EMAIL_USE_TLS=True
