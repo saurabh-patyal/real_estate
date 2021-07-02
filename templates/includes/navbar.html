@@ -43,34 +43,61 @@
 
         <ul class="navbar-nav ml-auto">
         {% comment %} authenticated user will not see login and register {% endcomment %}
-        {%if user.is_authenticated %}    
-         <li
-          {% if 'dashboard' in request.path %} 
-            class="nav-item active mr-3"
-          {% else %}
-            <class="nav-item  mr-3"
-          {% endif %}
-          >
-            <a class="nav-link" href="{% url 'dashboard' %}">Welcome {{user.first_name}} (dashboard)</a>
-          </li>
-          <li class="nav-item mr-3">
-            <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
-              <i class="fas fa-sign-out-alt">Logout</i>
+        {%if user.is_authenticated %}  
+
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Accounts <i class="far fa-user-circle"></i>
+          </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'profileEdit' %}"><i class="fas fa-user-edit"></i>&nbsp;Welcome {{user.first_name}}</a>
+              
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'dashboard' %}" {% if 'dashboard' in request.path %} 
+                class="nav-item active mr-3"
+                {% else %}
+                  <class="nav-item  mr-3"
+                {% endif %}><i class="fas fa-tachometer-alt"></i> &nbsp; Dashboard </a>
+                  <a class="dropdown-item" href="{% url 'changeuserpassword' %}" {% if 'changeuserpassword' in request.path %} 
+                  class="nav-item active mr-3"
+                {% else %}
+                <class="nav-item  mr-3"
+                {% endif %}><i class="fas fa-unlock-alt"></i>  &nbsp;&nbsp;Change Password </a>
+                <div class="dropdown-divider"></div>
+                <a href="javascript:{document.getElementById('logout').submit()}" class=" dropdown-item nav-item mr-3">
+                <i class="fas fa-sign-out-alt">&nbsp;&nbsp;&nbsp;&nbsp;Logout</i></a>
             </a>
             <form method="POST" id="logout" action="{% url 'logout' %}">
               <input type="hidden">
               {% csrf_token %}
             </form>
-          </li>
+
+            </div>
+          {% comment %} </li>
+
+          <li class="nav-item mr-3">
+            
+          </li> {% endcomment %}
         {% else %}
-          <li
+        {% comment %} ###############custom registrastion form################ {% endcomment %}
+          {% comment %} <li
           {% if 'register' in request.path %} 
-            class="nav-item active mr-3"
+            class="nav-item active mr-3"    
           {% else %}
             <class="nav-item  mr-3"
           {% endif %}
           >
             <a class="nav-link" href="{% url 'register' %}">Register</a>
+          </li> {% endcomment %}
+           {% comment %} #############Built-in-registration form ############## {% endcomment %}
+           <li     
+          {% if 'registeration' in request.path %} 
+            class="nav-item active mr-3"
+          {% else %}
+            <class="nav-item  mr-3"
+          {% endif %}
+          >
+            <a class="nav-link" href="{% url 'registeration' %}">signup</a>
           </li>
          <li
           {% if 'login' in request.path %} 

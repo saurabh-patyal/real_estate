@@ -15,7 +15,7 @@
                 {% include 'includes/alerts.html'%}
                 <form action="{% url 'register' %}" method="POST">
                   {% csrf_token %}
-                  <div class="form-group">
+                <div class="form-group">
                   <label for="first_name">First Name</label>
                   <input type="text" name="first_name" class="form-control" required>
                 </div>
@@ -39,6 +39,9 @@
                   <label for="password">Confirm Password</label>
                   <input type="password" name="password2" class="form-control" required>
                 </div>
+                <div class="form-group  captcha">
+                  <div class="g-recaptcha" data-sitekey="6LfX_VYbAAAAAPQonZ-K5bs6eJBc5dqKEYyFeURa"></div>
+                </div> 
                 <input type="submit" value="Register" class="btn btn-secondary btn-block">
               </form>
             </div>

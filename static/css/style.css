@@ -69,6 +69,46 @@ img {
 .listing-preview a {
   position: relative; }
 
+
+
+/** Social login css **/
+.social-list{
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+}
+.facebook-bg {
+    background: #4867aa;
+    color: #fff;
+}
+
+
+.google-bg {
+    background: #db4437;
+    color: #fff;
+}
+
+.extra-login{
+  text-align: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.captcha{
+  display: flex;
+  justify-content: center;
+}
+
+/* =============for validations error======== */
+.showError{
+  color: red;
+}
+/* ====================================Media Querry================== */
+
+
+
+
 @media (max-width: 991px) {
   #showcase {
     padding-top: 4rem; }

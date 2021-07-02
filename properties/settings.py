@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-cs(4v*zu$3%+t9@8ecrm31x^tj31t8l^@8b3@umigob=kv=7$2
 DEBUG = True
 
 ALLOWED_HOSTS = []
+# LOGIN_REDIRECT_URL='dashboard'
 
 
 # Application definition
@@ -43,7 +44,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # ... include the providers you want to enable please check document for more providers:
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -158,3 +169,6 @@ EMAIL_PORT=587               #Please ask port number from smtp server.gmail has 
 EMAIL_HOST_USER='saurabh.patyal@gmail.com'
 EMAIL_HOST_PASSWORD='viraj@2017'
 EMAIL_USE_TLS=True
+
+
+APPEND_SLASH = False  #use this to avooide / added automatically by browser

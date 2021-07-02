@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% comment %} for social login load below 2 {% endcomment %}
+{% load socialaccount %}
+{% providers_media_js %}
 {% block title %} | Login{% endblock %}
 {% block content %}
 <section id="login" class="bg-light py-5">
@@ -13,7 +16,7 @@
             <div class="card-body">
               {% comment %}Calling  Alerts Messages{% endcomment %}
                 {% include 'includes/alerts.html'%}
-              <form action="{% url 'login' %}" method="POST">
+              <form action="{% url 'login' %}" method="POST" id="loginForm">
               {% csrf_token %}
                 <div class="form-group">
                   <label for="username">Username</label>
@@ -24,9 +27,23 @@
                   <label for="password2">Password</label>
                   <input type="password" name="password" class="form-control" required>
                 </div>
-
+                <div class="extra-login">
+                  Or Login With
+                </div>
+                <ul class="social-list">
+                  <li><a href="{% provider_login_url 'facebook' method='oauth2' %}" class="facebook-bg btn btn-md"><i class="fab fa-facebook facebook-i"></i><span>&nbsp;Facebook</span></a></li>
+                  <li><a href="#" class="google-bg btn btn-md"><i class="fab fa-google google-i"></i><span>&nbsp;Google+</span></a></li>
+                </ul>
+                <div class="form-group  captcha">
+                  <div class="g-recaptcha" data-sitekey="6LfX_VYbAAAAAPQonZ-K5bs6eJBc5dqKEYyFeURa"></div>
+                 </div> 
                 <input type="submit" value="Login" class="btn btn-secondary btn-block">
               </form>
+               <div class="extra-login">
+                 Don't have an account? <a href="{% url 'registeration'%}"> Register here</a>
+                 <div><a href="{% url 'registeration'%}">Forgot Password?</a></div>
+               </div>
+              
             </div>
           </div>
         </div>

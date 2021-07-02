@@ -5,4 +5,7 @@ document.querySelector('.year').innerHTML = date.getFullYear();
 setTimeout(function(){
     $('#message').fadeOut('slow');
 },2000);
+
+
+document.getElementById("loginForm").reset();
   
