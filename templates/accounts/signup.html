@@ -14,7 +14,7 @@
             <div class="card-body">
              {% comment %}Calling  Alerts Messages{% endcomment %}
                 {% include 'includes/alerts.html'%}
-                <form action="{% url 'registeration' %}"  novalidate method="POST">
+                <form action="{% url 'registeration' %}"   method="POST">
                   {% csrf_token %}
                   {% if form.non_field_errors %}                 
                     {% for error in form.non_field_errors %}

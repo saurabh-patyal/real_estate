@@ -164,11 +164,12 @@ MESSAGE_TAGS = {
 }
 
 #Mail Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.gmail.com'  #Any smtp server from where you fired mail
 EMAIL_PORT=587               #Please ask port number from smtp server.gmail has 587 by defualt
 EMAIL_HOST_USER='saurabh.patyal@gmail.com'
-EMAIL_HOST_PASSWORD='viraj@2017'
+EMAIL_HOST_PASSWORD='qqdlbyiymkackdsd'
 EMAIL_USE_TLS=True
 
 
-APPEND_SLASH = False  #use this to avooide / added automatically by browser
+APPEND_SLASH = False  #use this to avoide / added automatically by browser

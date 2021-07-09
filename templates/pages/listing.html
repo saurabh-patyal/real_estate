@@ -150,6 +150,7 @@
             </div>
           </div>
           <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Make An Inquiry</button>
+          {% comment %} <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal-1">Make An Inquiry-modelform</button> {% endcomment %}
         </div>
       </div>
     </div>
@@ -166,7 +167,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="{% url 'contacts' %}" method="POST">
+          <form action="{% url 'contacts' %}" method="POST" novalidate>
              {% csrf_token %} 
              {% if user.is_authenticated %}
               <input type="hidden" name="user_id" value="{{user.id}}">
@@ -180,20 +181,20 @@
               <input type="text" name="listing" class="form-control" value="{{listing.title}}" >
             </div>
             <div class="form-group">
-              <label for="name" class="col-form-label">Name:(required)</label>
-              <input type="text" name="name" class="form-control" required {% if user.is_authenticated %} value="{{user.first_name}} {{user.first_name}}"{% endif %} required>
+              <label for="name" class="col-form-label">Name*(required)</label>
+              <input type="text" name="name" class="form-control" required placeholder="Your Name" {% if user.is_authenticated %} value="{{user.first_name}} {{user.first_name}}"{% endif %} required>
             </div>
             <div class="form-group">
-              <label for="email" class="col-form-label">Email:(required)</label>
-              <input type="email" name="email" class="form-control" required {% if user.is_authenticated %} value="{{user.email}}"{% endif %} required>
+              <label for="email" class="col-form-label">Email*(required)</label>
+              <input type="email" name="email" placeholder="Your Email" class="form-control" required {% if user.is_authenticated %} value="{{user.email}}"{% endif %} required>
             </div>
             <div class="form-group">
-              <label for="phone" class="col-form-label">Phone:</label>
-              <input type="tel" name="phone" class="form-control">
+              <label for="phone" class="col-form-label">Phone</label>
+              <input type="tel" name="phone" class="form-control" placeholder="(Optional)">
             </div>
             <div class="form-group">
-              <label for="message" class="col-form-label">Message:</label>
-              <textarea name="message" class="form-control"></textarea>
+              <label for="message" class="col-form-label">Message</label>
+              <textarea name="message" class="form-control" placeholder="(Optional)"></textarea>
             </div>
             <div class="form-group  captcha">
                   <div class="g-recaptcha" data-sitekey="6LfX_VYbAAAAAPQonZ-K5bs6eJBc5dqKEYyFeURa"></div>
@@ -205,4 +206,41 @@
       </div>
     </div>
   </div>
+
+  {% comment %} ======Inquiry Modal with model form with MdelForm:The problem is to click modal window automatically with js than data will render============ {% endcomment %}
+  {% comment %} <div class="modal fade" id="inquiryModal-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="inquiryModalLabel">Make An Inquiry-Modelform</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'inquiry' %}" method="POST">
+             {% csrf_token %} 
+             {% if contact.non_field_errors %}                 
+                    {% for error in form.non_field_errors %}
+                      {{error}}
+                    {% endfor %}
+                  {% endif %} 
+                  {% for field in contact %}                      
+                    <div class="form-group">
+                      {{field.label_tag}}
+                      <div>{{field}}</div>
+                      <div class="showError">{{field.errors | striptags}}</div>
+                    </div>
+                  {% endfor %}
+              
+            <div class="form-group  captcha">
+                  <div class="g-recaptcha" data-sitekey="6LfX_VYbAAAAAPQonZ-K5bs6eJBc5dqKEYyFeURa"></div>
+            </div> 
+            <hr>
+            <input type="submit" value="Send" class="btn btn-block btn-secondary">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> {% endcomment %}
 {% endblock %}

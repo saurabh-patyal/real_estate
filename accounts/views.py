@@ -6,6 +6,8 @@ from .forms import SignupForm,ChangePasswordForm,ChangeUserProile
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from django.conf import settings
+from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 import requests
 import json
@@ -70,6 +72,13 @@ def dashboard(request):
 def registeration(request):
     # return render(request,'accounts/dashboard.html')
     if request.method=='POST':
+        subject = "Thank you for registering to our site"
+        message = "You have succesfully created an account"
+        email_from = settings.EMAIL_HOST_USER    #admin mail from where mail triggered
+        email = request.POST['Email']           #email address of registered user
+        username=request.POST['username']
+
+
         #logic serverside for google-recaptcha
         clientkey=request.POST['g-recaptcha-response']
         secretkey='6LfX_VYbAAAAAGavFnBkxwVW0V9LMeUH-z64eYpW'
@@ -86,8 +95,12 @@ def registeration(request):
             fm=SignupForm(request.POST)
             if fm.is_valid():
                 fm.save()
+                recipient_list = [email,]
+                send_mail(subject,message,email_from,recipient_list)
+
                 messages.success(request,'You are Now Successfully Registered')
                 return redirect('login')
+                
             else:
                 fm=SignupForm(request.POST)
                 return render(request,'accounts/signup.html',{'form':fm})

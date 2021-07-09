@@ -35,7 +35,8 @@ class ChangeUserProile(UserChangeForm):
     first_name= forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'(Optional)'}),label_suffix='',max_length=10,min_length=1,required=False)
     last_name= forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'(Optional)'}),label_suffix='',max_length=10,min_length=1,required=False)
     username= forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Must be min 3 characters','disabled':'true'}),label_suffix='',max_length=10,min_length=3,label='Username*')
+    last_login= forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control','disabled':'true'}),label_suffix='',label='You Last Logged At')
     class Meta:
         model=User
-        fields=['first_name','last_name','username']
+        fields=['first_name','last_name','username','Email','last_login']
         
