@@ -18,15 +18,39 @@
                 {% include 'includes/alerts.html'%}
               <form action="{% url 'login' %}" method="POST" id="loginForm">
               {% csrf_token %}
-                <div class="form-group">
+                {% comment %} <div class="form-group">
                   <label for="username">Username</label>
                   <input type="text" name="username" class="form-control" required>
+                </div> {% endcomment %}
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></div>
+                      </div>
+                      <input type="text" class="form-control" name="username" id="username" placeholder="Your Username*" required>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                  <label for="password2">Password</label>
-                  <input type="password" name="password" class="form-control" required>
+                <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-eye" aria-hidden="true"></i></div>
+                      </div>
+                      <input type="password" class="form-control" name="password" id="password" placeholder="Your Password*" required>
+                    </div>
                 </div>
+
+                <div class="col-auto">
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="checkbox" id="autoSizingCheck" onclick="showPassword()">
+                      <label class="form-check-label" for="autoSizingCheck">
+                        Show Password
+                      </label>
+                    </div>
+                </div>
+
                 <div class="extra-login">
                   Or Login With
                 </div>

@@ -104,8 +104,15 @@ img {
 .showError{
   color: red;
 }
-/* ====================================Media Querry================== */
+/* ====================================Password_reset_pages fll heightso that footer will goes down to bottom as page content is less================== */
 
+.password_reset_body{
+  min-height: 100vh;
+  height: 100%;
+}
+
+
+/* ====================================Media Querry================== */
 
 
 
